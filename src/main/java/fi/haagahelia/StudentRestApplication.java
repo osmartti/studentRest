@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
 import fi.haagahelia.domain.Student;
@@ -14,7 +16,12 @@ import fi.haagahelia.domain.User;
 import fi.haagahelia.domain.UserRepository;
 
 @SpringBootApplication
-public class StudentRestApplication {
+public class StudentRestApplication extends SpringBootServletInitializer {
+
+	@Override
+	protected SpringApplicationBuilder configure (SpringApplicationBuilder studentRestApplication) {
+		return studentRestApplication.sources(StudentRestApplication.class);
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(StudentRestApplication.class, args);
